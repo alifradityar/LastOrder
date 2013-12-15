@@ -3,6 +3,7 @@
 #include "root_directory.h"
 #include "data_pool.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cstring>
 
@@ -13,12 +14,29 @@ SisterAllocationTable sat;
 //RootDirectory rd;
 //DataPool dp;
 
-void readFile(){
+void readFile(char* file){
+  string line;
+  ifstream myfile (file);
+  if (myfile.is_open())
+  {
+    while ( getline (myfile,line) )
+    {
+      cout << line << '\n';
+    }
+    myfile.close();
+  }
 
+  else cout << "Unable to open file"; 
 }
 
-void writeFile(){
-	
+void writeFile(char* file,string content){
+  ofstream myfile (file);
+  if (myfile.is_open())
+  {
+    myfile << content;
+    myfile.close();
+  }
+  else cout << "Unable to open file";
 }
 
 void generateFile(string namaFile){
@@ -35,6 +53,8 @@ int main(int argc, char *argv[]){
 	}
 	else if (argc == 3){
 		cout << "Shift success" << endl;
+		cout << argv[2] << "c" << endl;
+		readFile(argv[2]);
 	}
 	else if (argc == 4){
 		if (strcmp(argv[3],"shift") == 0){
