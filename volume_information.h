@@ -1,6 +1,7 @@
 #ifndef VOLUME_INFORMATION_H
 #define VOLUME_INFORMATION_H
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class VolumeInformation{
 		int filesystemCapacity;
 		int freeBlock;
 		int firstIdxBlock;
-		char reserved[740];
+		string reserved;
 		string sist;
 
 	public : 
@@ -26,6 +27,10 @@ class VolumeInformation{
 		int getCapacity();
 		int getFree();
 		int getFirst();
+		string DecToBin(int number);
+		int BinToDec(string number);
+		string int2str(string bin);
+		string toString();
 		void Print();
 };
 #endif
