@@ -15,28 +15,60 @@ RootDirectory rd;
 //DataPool dp;
 
 void readFile(char* file){
-  string line;
-  ifstream myfile (file);
-  if (myfile.is_open())
-  {
-    while ( getline (myfile,line) )
-    {
-      cout << line << '\n';
-    }
-    myfile.close();
-  }
-
-  else cout << "Unable to open file"; 
+	string line;
+	string whole = "";
+  	ifstream myfile (file);
+  	if (myfile.is_open())
+  	{
+    	while ( getline (myfile,line) )
+    	{
+      		whole = whole + line;
+    	}
+    	myfile.close();
+	  	// Volume Information
+	  	string svi = "";
+	  	for (int i=0;i<1024;i++){
+			svi = svi + whole[i];
+		}
+		vi.load(svi);
+	  	// Sister Allocation Table
+		string ssat = "";
+		int offset = 1024;
+	  	for (int i=0;i<128*1024;i++){
+			ssat = ssat + whole[offset+i];
+		}
+		sat.load(ssat);
+	  	// Root Directory
+		string srd = "";
+		offset+= 128*1024;
+	  	for (int i=0;i<1024;i++){
+			svi = svi + whole[offset+i];
+		}
+		rd.load(srd);
+	  	// Data Pool
+		string sdp = "";
+		offset+=1024
+	  	for (int i=offset;i<whole.length();i++){
+			svi = svi + whole[i];
+		}
+		dp.load(sdp);
+	}
+  	else 
+  		cout << "Unable to open file"; 
 }
 
-void writeFile(char* file,string content){
-  ofstream myfile (file);
-  if (myfile.is_open())
-  {
-    myfile << content;
-    myfile.close();
-  }
-  else cout << "Unable to open file";
+void writeFile(char* file){
+	string whole;
+	ofstream myfile (file);
+	if (myfile.is_open()){
+		whole = whole + vi.toString();		
+		whole = whole + sat.toString();
+		whole = whole + rd.toString();
+		whole = whole + dp.toString();
+		myfile.close();
+	}
+	else 
+		cout << "Unable to open file";
 }
 
 void generateFile(string namaFile){
