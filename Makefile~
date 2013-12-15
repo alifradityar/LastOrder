@@ -1,3 +1,7 @@
 make:
-	g++ -o LastOrder last_order.cpp volume_information.cpp sister_allocation_table.cpp
+<<<<<<< HEAD
+	g++ -o LastOrder last_order.cpp volume_information.cpp sister_allocation_table.cpp root_directory.cpp data_pool.cpp
+=======
+	g++ -Wall -o LastOrder last_order.cpp volume_information.cpp sister_allocation_table.cpp
+>>>>>>> 9fd1ac9f6b84ffb82303126ef164725e6d5402ff
 
