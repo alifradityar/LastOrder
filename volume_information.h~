@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 #ifndef VOLUME_INFORMATION_H
 #define VOLUME_INFORMATION_H
->>>>>>> 9e0955830bac0629137a6b781509f68484b5b746
 #include <iostream>
 
 using namespace std;
@@ -20,10 +17,6 @@ class VolumeInformation{
 
 	public : 
 		VolumeInformation();
-<<<<<<< HEAD
-		VolumeInformation(string);
-=======
->>>>>>> 9e0955830bac0629137a6b781509f68484b5b746
 		VolumeInformation(string nama, int capacity, int _free, int _first);
 		void setNama(string nama);
 		void setCapacity(int capacity);
@@ -34,8 +27,5 @@ class VolumeInformation{
 		int getFree();
 		int getFirst();
 		void Print();
-<<<<<<< HEAD
-		string toString();
-=======
->>>>>>> 9e0955830bac0629137a6b781509f68484b5b746
 };
+#endif

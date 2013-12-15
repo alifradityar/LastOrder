@@ -8,14 +8,6 @@ SisterAllocationTable::SisterAllocationTable(){
 	}
 }
 
-SisterAllocationTable::SisterAllocationTable(string str){
-	int idx = 0;
-	for (int i=1;i<=65535;i++){
-		SisterAllocationTable::next[i] = str[idx]*256+str[idx+1];
-		idx+=2;
-	}
-}
-
 SisterAllocationTable::~SisterAllocationTable(){
 	
 }
@@ -43,8 +35,10 @@ string SisterAllocationTable::toString(){
 	return str;
 }
 
-/*
-int main(){
-	SisterAllocationTable sisterAllocationTable;
+void SisterAllocationTable::load(string str){
+	int idx = 0;
+	for (int i=1;i<=65535;i++){
+		SisterAllocationTable::next[i] = str[idx]*256+str[idx+1];
+		idx+=2;
+	}
 }
-*/

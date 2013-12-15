@@ -9,11 +9,11 @@ class SisterAllocationTable {
 		unsigned short next[65536];
 	public :
 		SisterAllocationTable();
-		SisterAllocationTable(string);
 		~SisterAllocationTable();
 		unsigned short getBlockValue(int);
 		void setBlockValue(int,unsigned short);
 		string toString();
+		void load(string);
 };
 
 #endif

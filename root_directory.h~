@@ -24,7 +24,5 @@ class RootDirectory{
 		string DecToBin(int number);
 		int BinToDec(string number);
 		string checkBin(string binary,string status);
-		string toString();
-		void load(string);
 };
 #endif

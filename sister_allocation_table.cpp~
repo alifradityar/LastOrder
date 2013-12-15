@@ -40,11 +40,13 @@ string SisterAllocationTable::toString(){
 		str[idx+1] = SisterAllocationTable::next[i]%256;
 		idx+=2;
 	}
-	return strl
+	return str;
 }
 
-/*
-int main(){
-	SisterAllocationTable sisterAllocationTable;
+void SisterAllocationTable::load(string str){
+	int idx = 0;
+	for (int i=1;i<=65535;i++){
+		SisterAllocationTable::next[i] = str[idx]*256+str[idx+1];
+		idx+=2;
+	}
 }
-*/

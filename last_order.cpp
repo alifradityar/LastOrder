@@ -10,7 +10,7 @@ using namespace std;
 
 VolumeInformation vi;
 SisterAllocationTable sat;
-//RootDirectory rd;
+RootDirectory rd;
 //DataPool dp;
 
 void readFile(){
