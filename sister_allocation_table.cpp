@@ -22,12 +22,12 @@ void SisterAllocationTable::setBlockValue(int id,unsigned short value){
 
 string SisterAllocationTable::toString(){
 	string str;
-	for (int i=1;i<=65535;i++){
+	for (int i=0;i<=65535;i++){
 		str = str + "  ";
 	}
 	
 	int idx = 0;
-	for (int i=1;i<=65535;i++){
+	for (int i=0;i<=65535;i++){
 		str[idx] = SisterAllocationTable::next[i]/256;
 		str[idx+1] = SisterAllocationTable::next[i]%256;
 		idx+=2;
