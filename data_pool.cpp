@@ -2,7 +2,7 @@
 
 DataPool::DataPool(){
 	for (int i=0;i<21;i++){
-		namaFile[i]='\0';
+		namaFile = namaFile + '\0';
 	}
 	
 	fileAtt = '0';
@@ -29,6 +29,10 @@ DataPool::DataPool(){
 
 DataPool::DataPool(string name, char att, short _dir, int _size){
 	namaFile = name;
+	for (int i=name.length();i<21;i++){
+		namaFile = namaFile + '\0';
+	}
+	
 	fileAtt = att;
 	
 	time_t now = time(0);
