@@ -13,9 +13,10 @@ using namespace std;
 VolumeInformation vi;
 SisterAllocationTable sat;
 RootDirectory rd;
-DataPool dp;
+vector <DataPool> dp;
 
 void readFile(char* file){
+	dp.clear();
 	string line;
 	string whole = "";
   	ifstream myfile (file);
@@ -43,16 +44,19 @@ void readFile(char* file){
 		string srd = "";
 		offset+= 128*1024;
 	  	for (int i=0;i<1024;i++){
-			svi = svi + whole[offset+i];
+			srd = srd + whole[offset+i];
 		}
 		rd.load(srd);
 	  	// Data Pool
-		string sdp = "";
-		offset+=1024
-	  	for (int i=offset;i<whole.length();i++){
-			svi = svi + whole[i];
+		offset+=1024;
+		while (offset < whole.length()){
+		  	string sdp = "";
+		  	for (int i=offset;i<whole.length();i++){
+				sdp = sdp + whole[i];
+			}
+			DataPool dpt;
+			dpt.load(sdp);
 		}
-		dp.load(sdp);
 	}
   	else 
   		cout << "Unable to open file"; 
@@ -65,7 +69,9 @@ void writeFile(char* file){
 		whole = whole + vi.toString();		
 		whole = whole + sat.toString();
 		whole = whole + rd.toString();
-		whole = whole + dp.toString();
+		for (int i=0;i<dp.size();i++){
+			whole = whole + dp[i].toString();
+		}
 		myfile << whole;
 		myfile.close();
 	}
