@@ -1,3 +1,5 @@
+#ifndef VOLUME_INFORMATION_H
+#define VOLUME_INFORMATION_H
 #include <iostream>
 
 using namespace std;
@@ -26,3 +28,4 @@ class VolumeInformation{
 		int getFirst();
 		void Print();
 };
+#endif
