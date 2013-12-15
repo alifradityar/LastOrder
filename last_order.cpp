@@ -6,13 +6,14 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
 VolumeInformation vi;
 SisterAllocationTable sat;
 RootDirectory rd;
-//DataPool dp;
+DataPool dp;
 
 void readFile(char* file){
 	string line;

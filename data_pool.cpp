@@ -146,3 +146,49 @@ string DataPool::checkBin(string binary,string status){
 	}
 	return binary;
 }
+string DataPool::toString(){
+	//string namaFile;
+	//char fileAtt;
+	//unsigned short clock;
+	//unsigned short date;
+	//unsigned short dir;
+	//int size;
+	string str = namaFile;
+	while (str.length() < 21){
+		str = str + '*';
+	}
+	str = str + fileAtt;
+	str = str + (char)(clock/256);
+	str = str + (char)(clock%256);
+	str = str + (char)(date/256);
+	str = str + (char)(date%256);
+	str = str + (char)(dir/256);
+	str = str + (char)(dir%256);
+	int a,b,c,d;
+	a = size/(256*256*256);
+	b = size/(256*256);
+	b%=256;
+	c = size/256;
+	c%=256;
+	d = size % 256;
+}
+
+void DataPool::load(string str){
+	int idx = 0;
+	for (int i=0;i<=21;i++){
+		if (str == "*")
+			continue;
+		else
+			namaFile = namaFile + str[i];
+		idx++;
+	}
+	fileAtt =  str[idx];
+	idx++;
+	clock = str[idx]*256+str[idx+1];
+	idx+=2;
+	date = str[idx]*256+str[idx+1];
+	idx+=2;
+	dir = str[idx]*256+str[idx+1];
+	idx+=2;
+	size = str[idx]*256*256*256 + str[idx+1]*256*256 + str[idx+2]*256 + str[idx+3];
+}

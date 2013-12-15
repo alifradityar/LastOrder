@@ -6,13 +6,14 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
 VolumeInformation vi;
 SisterAllocationTable sat;
 RootDirectory rd;
-//DataPool dp;
+Vector <DataPool> dp;
 
 void readFile(char* file){
 	string line;
@@ -65,6 +66,7 @@ void writeFile(char* file){
 		whole = whole + sat.toString();
 		whole = whole + rd.toString();
 		whole = whole + dp.toString();
+		myfile << whole;
 		myfile.close();
 	}
 	else 
