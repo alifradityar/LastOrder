@@ -10,11 +10,11 @@ SisterAllocationTable::~SisterAllocationTable(){
 	
 }
 
-int SisterAllocationTable::getBlockValue(short id){
+int SisterAllocationTable::getBlockValue(int id){
 	return SisterAllocationTable::next[i];
 }
 
-void SisterAllocationTable::setBlockValue(short id,short value){
+void SisterAllocationTable::setBlockValue(int id,int value){
 	SisterAllocationTable::next[id] = value;
 }
 

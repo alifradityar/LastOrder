@@ -5,7 +5,7 @@ using namespace std;
 
 class SisterAllocationTable(){
 	private :
-		short next[65536];
+		short next[65534];
 	public :
 		SisterAllocationTable();
 		~SisterAllocationTable();
