@@ -1,5 +1,6 @@
 #include <iostream>
 #include "volume_information.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -141,6 +142,83 @@ string VolumeInformation::toString(){
 	string first = int2str(DecToBin(firstIdxBlock));
 	VolInfo = magicString + namaPartisi + jmlB + capacity + free + first + reserved + sist;
 	return VolInfo;
+}
+
+void VolumeInformation::load(string input){
+	int ctr=0;
+	string temp="";
+	for (int i=0; i<1024; i++){
+		ctr++;
+		if (ctr==8){
+			temp = temp + input[i];
+			magicString = temp;
+			cout << magicString << endl;
+			temp ="";
+		}
+		else if (ctr==264){
+			temp = temp + input[i];
+			namaPartisi = temp;
+			cout << namaPartisi << endl;
+			temp ="";
+		}
+		else if (ctr==268){
+			temp = temp + input[i];
+			jumlahByte = str2int(temp);
+			cout << jumlahByte << endl;
+			temp ="";
+		}
+		else if (ctr==272){
+			temp = temp + input[i];
+			filesystemCapacity = str2int(temp);
+			cout << filesystemCapacity << endl;
+			temp ="";
+		}
+		else if (ctr==276){
+			temp = temp + input[i];
+			freeBlock = str2int(temp);
+			cout << freeBlock<< endl;
+			temp ="";
+		}
+		else if (ctr==280){
+			temp = temp + input[i];
+			firstIdxBlock = str2int(temp);
+			cout << firstIdxBlock << endl;
+			temp ="";
+		}
+		else if (ctr== 1020){
+			temp = temp + input[i];
+			reserved = temp;
+			cout << reserved << endl;
+			temp ="";
+		}
+		else if (ctr==1024){
+			temp = temp + input[i];
+			sist = temp;
+			cout << sist << endl;
+			temp ="";
+		}
+		else{
+			temp = temp + input[i];
+		}
+	}
+}
+
+int VolumeInformation::str2int(string chr){
+	string temp="";
+	string result="";
+	string zero = "0";
+	for(int i=0;i<4;i++){
+		temp = DecToBin(int(chr[i]));	
+		int delta = 8 - temp.length();
+		if (delta>=0){
+			for(int i=0;i<delta;i++){
+				temp = zero + temp;
+			}
+		}
+		result = result + temp;
+	}
+	//cout << "result : " << result << endl;
+	return BinToDec(result);
 }
 
 void VolumeInformation::Print(){

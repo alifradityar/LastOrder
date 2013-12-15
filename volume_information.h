@@ -31,6 +31,8 @@ class VolumeInformation{
 		int BinToDec(string number);
 		string int2str(string bin);
 		string toString();
+		int str2int(string chr);
+		void load(string input);
 		void Print();
 };
 #endif
