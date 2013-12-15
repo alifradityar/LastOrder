@@ -1,16 +1,19 @@
-#ifndef SAT
-#define SAT
+#ifndef __SAT
+#define __SAT
+#include <string>
 
 using namespace std;
 
-class SisterAllocationTable(){
+class SisterAllocationTable {
 	private :
-		short next[65536];
+		unsigned short next[65536];
 	public :
 		SisterAllocationTable();
+		SisterAllocationTable(string);
 		~SisterAllocationTable();
-		short getBlockValue(short);
-		void setBlockValue(short,short);
-}
+		unsigned short getBlockValue(int);
+		void setBlockValue(int,unsigned short);
+		string toString();
+};
 
 #endif

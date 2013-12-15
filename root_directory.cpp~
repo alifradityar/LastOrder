@@ -1,0 +1,16 @@
+#ifndef __ROOT
+#define __ROOT
+
+using namespace std;
+
+class RootDirectory(){
+	private :
+		short next[65536];
+	public :
+		SisterAllocationTable();
+		~SisterAllocationTable();
+		short getBlockValue(short);
+		void setBlockValue(short,short);
+}
+
+#endif

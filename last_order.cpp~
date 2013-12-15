@@ -29,7 +29,15 @@ void generateFile(string namaFile){
 // ./LastOrder /mnt/hd/sisterfs sister.fs shift
 
 int main(int argc, char *argv[]){
-	
+	// FOR TEST
+	string str = sat.toString();
+	SisterAllocationTable sat2(str);
+	string str2 = sat2.toString();
+	cout << str << endl;
+	cout << str2 << endl;
+	cout << sat.getBlockValue(65535) << " " << sat.getBlockValue(65535) << endl;
+	// REAL
+	/*
 	if (argc < 3 || argc > 4) {
 		cout << "Shift failed, invalid parameter[s]" << endl;
 	}
@@ -45,5 +53,5 @@ int main(int argc, char *argv[]){
 		else {
 			cout << "Shift failed, invalid parameter[s]" << endl;
 		}
-	}
+	} */
 }
