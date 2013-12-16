@@ -1,7 +1,24 @@
-make:
-<<<<<<< HEAD
-	g++ -o LastOrder last_order.cpp volume_information.cpp sister_allocation_table.cpp root_directory.cpp data_pool.cpp
-=======
-	g++ -Wall -o LastOrder last_order.cpp volume_information.cpp sister_allocation_table.cpp
->>>>>>> 9fd1ac9f6b84ffb82303126ef164725e6d5402ff
+LastOrder : last_order.o volume_information.o sister_allocation_table.o root_directory.o data_pool.o entry.o
+	g++ -g -o LastOder last_order.o volume_information.o sister_allocation_table.o root_directory.o data_pool.o entry.o `pkg-config fuse --libs`
+
+last_order.o : last_order.cpp volume_information.h sister_allocation_table.h root_directory.h data_pool.h entry.h params.h
+	g++ -g -Wall `pkg-config fuse --cflags` last_order.cpp
+
+volume_information.o : volume_information.cpp volume_information.h sister_allocation_table.h root_directory.h data_pool.h entry.h params.h
+	g++ -g -Wall `pkg-config fuse --cflags` volume_information.cpp
+
+sister_allocation_table.o : sister_allocation_table.cpp sister_allocation_table.h volume_information.h root_directory.h data_pool.h entry.h params.h
+	g++ -g -Wall `pkg-config fuse --cflags` sister_allocation_table.cpp
+
+root_directory.o : root_directory.cpp root_directory.h volume_information.h sister_allocation_table.h data_pool.h entry.h params.h
+	g++ -g -Wall `pkg-config fuse --cflags` root_directory.cpp
+
+data_pool.o : data_pool.cpp data_pool.h volume_information.h sister_allocation_table.h root_directory.h entry.h params.h
+	g++ -g -Wall `pkg-config fuse --cflags` data_pool.cpp
+
+entry.o : entry.cpp entry.h volume_information.h sister_allocation_table.h root_directory.h data_pool.h params.h
+	g++ -g -Wall `pkg-config fuse --cflags` entry.cpp
+
+clean:
+	rm -f bbfs *.o
 

@@ -152,49 +152,49 @@ void VolumeInformation::load(string input){
 		if (ctr==8){
 			temp = temp + input[i];
 			magicString = temp;
-			cout << magicString << endl;
+			//cout << magicString << endl;
 			temp ="";
 		}
 		else if (ctr==264){
 			temp = temp + input[i];
 			namaPartisi = temp;
-			cout << namaPartisi << endl;
+			//cout << namaPartisi << endl;
 			temp ="";
 		}
 		else if (ctr==268){
 			temp = temp + input[i];
 			jumlahByte = str2int(temp);
-			cout << jumlahByte << endl;
+			//cout << jumlahByte << endl;
 			temp ="";
 		}
 		else if (ctr==272){
 			temp = temp + input[i];
 			filesystemCapacity = str2int(temp);
-			cout << filesystemCapacity << endl;
+			//cout << filesystemCapacity << endl;
 			temp ="";
 		}
 		else if (ctr==276){
 			temp = temp + input[i];
 			freeBlock = str2int(temp);
-			cout << freeBlock<< endl;
+			//cout << freeBlock<< endl;
 			temp ="";
 		}
 		else if (ctr==280){
 			temp = temp + input[i];
 			firstIdxBlock = str2int(temp);
-			cout << firstIdxBlock << endl;
+			//cout << firstIdxBlock << endl;
 			temp ="";
 		}
 		else if (ctr== 1020){
 			temp = temp + input[i];
 			reserved = temp;
-			cout << reserved << endl;
+			//cout << reserved << endl;
 			temp ="";
 		}
 		else if (ctr==1024){
 			temp = temp + input[i];
 			sist = temp;
-			cout << sist << endl;
+			//cout << sist << endl;
 			temp ="";
 		}
 		else{

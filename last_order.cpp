@@ -8,6 +8,13 @@
 #include <cstring>
 #include <vector>
 
+#include "params.h"
+#include <ctype.h>
+#include <dirent.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <fuse.h>
+
 using namespace std;
 
 VolumeInformation vi;
@@ -27,12 +34,15 @@ void readFile(char* file){
       		whole = whole + line;
     	}
     	myfile.close();
+    	//cout << whole.length() << endl;
 	  	// Volume Information
 	  	string svi = "";
 	  	for (int i=0;i<1024;i++){
 			svi = svi + whole[i];
 		}
 		vi.load(svi);
+		//cout << svi.length() << endl;
+		//cout << svi << endl;
 	  	// Sister Allocation Table
 		string ssat = "";
 		int offset = 1024;
@@ -40,6 +50,8 @@ void readFile(char* file){
 			ssat = ssat + whole[offset+i];
 		}
 		sat.load(ssat);
+		//cout << ssat.length() << endl;
+		//cout << ssat << endl;
 	  	// Root Directory
 		string srd = "";
 		offset+= 128*1024;
@@ -47,8 +59,11 @@ void readFile(char* file){
 			srd = srd + whole[offset+i];
 		}
 		rd.load(srd);
+		//cout << srd.length() << endl;
+		//cout << srd << endl;
 	  	// Data Pool
 		offset+=1024;
+		int idxx = 0;
 		while (offset < whole.length()){
 		  	string sdp = "";
 		  	for (int i=offset;i<whole.length();i++){
@@ -56,7 +71,13 @@ void readFile(char* file){
 			}
 			DataPool dpt;
 			dpt.load(sdp);
+			dp.push_back(dpt);
+			//cout << sdp.length() << endl;
+			//cout << idxx << " " << sdp << endl;
+			idxx++;
+			offset+=32;
 		}
+		cout << whole.length() << endl;
 	}
   	else 
   		cout << "Unable to open file"; 
@@ -66,12 +87,24 @@ void writeFile(char* file){
 	string whole;
 	ofstream myfile (file);
 	if (myfile.is_open()){
-		whole = whole + vi.toString();		
+		//cout << "write1" << endl;
+		whole = whole + vi.toString();
+		//cout << vi.toString().length() << endl;
+		//cout << "write2" << endl;		
 		whole = whole + sat.toString();
+		//cout << sat.toString().length() << endl;
+		//cout << "write3" << endl;
 		whole = whole + rd.toString();
+		//cout << rd.toString().length() << endl;
+		//cout << "write4" << endl;
 		for (int i=0;i<dp.size();i++){
+			//cout << "write5" << i << endl;
 			whole = whole + dp[i].toString();
+			//cout << dp[i].toString().length() << endl;
 		}
+		cout << whole.length() << endl;
+		//cout << endl;
+		//cout << endl;
 		myfile << whole;
 		myfile.close();
 	}
@@ -83,10 +116,17 @@ void generateFile(string namaFile){
 
 }
 
+
+
 // ./LastOrder /mnt/hd/sisterfs sister.fs
 // ./LastOrder /mnt/hd/sisterfs sister.fs shift
 
 int main(int argc, char *argv[]){
+	DataPool dpt;
+
+	dp.push_back(dpt);
+	writeFile("sister.fs");
+	readFile("sister.fs");
 	
 	if (argc < 3 || argc > 4) {
 		cout << "Shift failed, invalid parameter[s]" << endl;
